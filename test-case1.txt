@@ -1,0 +1,86 @@
+Absolutely! Input validation is crucial for the stability, usability, and security of your application. By testing edge cases, you're ensuring the robustness of your application. Here’s a detailed guide for each element:
+
+Date Picker (String Format of Date)
+
+Assumption: Assuming the expected format is "YYYY-MM-DD". Adjust as needed.
+
+Valid Input:
+    "2023-09-12" (Today’s date)
+    "0000-01-01" (Earliest possible date, if allowed)
+
+Edge Cases:
+    "2023-02-29" (Leap year check)
+    "2023-04-31" (Invalid day for April)
+
+Special Characters:
+    "2023-09-12`~!@#$%^&*()-_=+[{]}|;:'",<.>/?"
+    "2023/09/12"
+    "2023.09.12"
+
+Boundary Cases:
+    "2023-00-00"
+    "2023-13-32"
+
+
+OSI Symbol Input (Alphanumerics)
+
+Valid Input:
+
+"OSI123"
+"123OSI"
+Edge Cases:
+
+Just the alphabet "OSI"
+Just numbers "123456"
+Special Characters:
+
+"OSI`~!@#$%^&*()-_=+[{]}|;:'",<.>/?123"
+Boundary Cases:
+
+Empty input
+Extremely long input, beyond expected character limit
+Time Input Fields (HH24:MI:SS:sssssssss)
+
+Assumption: Time precision up to nanoseconds.
+
+Valid Input:
+
+"23:59:59:999999999"
+"00:00:00:000000000"
+Edge Cases:
+
+"24:00:00:000000000"
+"00:60:60:1000000000"
+Special Characters:
+
+"23:59:59:999999999`~!@#$%^&*()-_=+[{]}|;:'",<.>/?"
+"23/59/59/999999999"
+Boundary Cases:
+
+"23:59:59:000000000"
+"00:00:00:999999999"
+Processing Day Input (Integer)
+
+Assumption: Day range is between 1 and 31, but this may differ based on your application.
+
+Valid Input:
+
+"1"
+"31"
+Edge Cases:
+
+"32"
+"0"
+Special Characters:
+
+"1`~!@#$%^&*()-_=+[{]}|;:'",<.>/?"
+"31/ or 31."
+Boundary Cases:
+
+Negative values, e.g., "-1"
+Large numbers beyond expected range, e.g., "1000"
+Remember to also consider non-typical inputs for each category (like entering letters where only numbers should be, entering numbers where only letters should be, entering nothing at all, etc.). Checking for SQL injection, script injection, and other malicious inputs is also crucial if these fields interact with databases or web interfaces. It's not just about ensuring valid data is entered, but also ensuring invalid or malicious data doesn't get through.
+
+
+
+
